@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>MyWebProject</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>My Customers from embedded H2 database</h3>
+	<hr>
+	<!--  Button for add customer -->
+	<a th:href="@{/mycustomers/showFormForAdd}" class="btn btn-secondary btn-sm mb-3">Add Customer</a>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Age</th>
+				<th>Action / Delete</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempCustomer : ${customers}">
+			
+				<td th:text="${tempCustomer.firstname}" />	
+				<td th:text="${tempCustomer.lastname}" />	
+				<td th:text="${tempCustomer.email}" />	
+				<td th:text="${tempCustomer.age}" />
+				
+				<!-- Add update function -->
+				<td>
+					<a th:href="@{/mycustomers/showFormForUpdate(customerId=${tempCustomer.id})}" 
+						class="btn btn-info btn-sm">Update</a>
+						<a th:href="@{/mycustomers/deleteTheCustomer(customerId=${tempCustomer.id})}" 
+						class="btn btn-danger btn-sm">Delete</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+
